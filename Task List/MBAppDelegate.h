@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FaceBookSDK/FacebookSDK.h>
 
 @interface MBAppDelegate : UIResponder <UIApplicationDelegate>
 

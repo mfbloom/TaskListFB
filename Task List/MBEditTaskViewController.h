@@ -7,7 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBTask.h"
 
-@interface MBEditTaskViewController : UIViewController
+@protocol MBEditTaskViewControllerDelegate <NSObject>
+
+-(void)didUpdateTask;
+
+@end
+
+@interface MBEditTaskViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+
+@property (weak,nonatomic)id <MBEditTaskViewControllerDelegate> delegate;
+
+@property (strong, nonatomic) MBTask *task;
+
+@property (strong, nonatomic) IBOutlet UITextField *taskTextField;
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) IBOutlet UITextView *textView;
+
+- (IBAction)saveBarButtonPressed:(UIBarButtonItem *)sender;
 
 @end

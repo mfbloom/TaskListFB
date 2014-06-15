@@ -10,4 +10,28 @@
 
 @implementation MBTask
 
+
+- (id)initWithData:(NSDictionary *)data
+{
+    //use NSObject init
+    self = [super init];
+    
+    if(self)
+    {
+        self.title = data[TITLE];
+        self.description = data[DESCRIPTION];
+        self.date = data[DATE];
+        self.isCompleted = [data[COMPLETION] boolValue];
+    }
+    
+    return self;
+}
+
+-(id)init{
+    self = [self initWithData:nil];
+    
+    return self;
+}
+
+
 @end

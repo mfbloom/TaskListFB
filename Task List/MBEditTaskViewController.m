@@ -26,13 +26,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.taskTextField.text = self.task.title;
+    self.textView.text = self.task.description;
+    self.datePicker.date = self.task.date;
+    
+    self.textView.delegate = self;
+    self.taskTextField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Helper
+
+-(void)updateTask
+{
+    self.task.title = self.taskTextField.text;
+    self.task.description = self.textView.text;
+    self.task.date = self.datePicker.date;
 }
 
 /*
@@ -46,4 +61,26 @@
 }
 */
 
+- (IBAction)saveBarButtonPressed:(UIBarButtonItem *)sender {
+
+    [self updateTask];
+    [self.delegate didUpdateTask];
+
+}
+#pragma mark - UiTextFieldDelegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.taskTextField resignFirstResponder];
+    return YES;
+}
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([text isEqualToString:@"\n"])
+    {
+        [self.textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
 @end

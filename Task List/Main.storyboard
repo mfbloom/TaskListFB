@@ -40,6 +40,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="srq-bq-ReE">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="nAF-xF-6jC">
                             <connections>
@@ -151,15 +152,18 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="Xu9-Hd-9qa" kind="modal" identifier="toNavigationViewControllerFromFB" id="k4I-h8-gKt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2FM-Ed-c0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1861" y="146"/>
+            <point key="canvasLocation" x="-685" y="-499"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller - ViewController-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MBViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" title="ViewController" id="vXZ-lx-hvc" customClass="MBViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -202,6 +206,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="r9q-PQ-Buv">
                         <barButtonItem key="leftBarButtonItem" title="Priority" id="1hR-9l-gtg">
                             <connections>
@@ -214,6 +219,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Y79-Un-xvO" id="ejv-DU-VKK"/>
                         <segue destination="SOz-Kr-lKX" kind="modal" identifier="toAddTaskViewController" id="aGW-TO-AkT"/>

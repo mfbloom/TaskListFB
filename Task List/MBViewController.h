@@ -7,7 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBAddTaskViewController.h"
+#import "MBDetailViewController.h"
+#import "MBTask.h"
 
-@interface MBViewController : UIViewController
+@protocol MBViewControllerDelegate <NSObject>
+
+@end
+
+@interface MBViewController : UIViewController <MBViewControllerDelegate, MBAddTaskViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, MBDetailTaskViewControllerDelegate >
+@property (weak,nonatomic) id <MBViewControllerDelegate> delegate;
+
+@property (strong,nonatomic) NSMutableArray *taskObjects;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)addBarButtonPressed:(UIBarButtonItem *)sender;
+- (IBAction)priorityBarButtonPressed:(UIBarButtonItem *)sender;
+
+@property (strong, nonatomic) IBOutlet UITableViewCell *tableViewCell;
 
 @end

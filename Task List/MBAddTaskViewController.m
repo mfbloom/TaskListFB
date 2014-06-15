@@ -26,7 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.textView.delegate = self;
+    self.taskTextField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,4 +48,47 @@
 }
 */
 
+
+#pragma mark - Helper Methods 
+
+-(MBTask *)returnNewTaskObject
+{
+    MBTask *taskObject = [[MBTask alloc]init];
+    taskObject.title = self.taskTextField.text;
+    taskObject.description = self.textView.text;
+    taskObject.date = self.datePicker.date;
+    taskObject.isCompleted = NO;
+    
+    return taskObject;
+}
+
+- (IBAction)cancelButtonPressed:(UIButton *)sender {
+    
+    [self.delegate didCancel];
+    
+    //[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)addButtonPressed:(UIButton *)sender {
+    
+    [self.delegate didAddTask:[self returnNewTaskObject]];
+}
+
+#pragma mark - UiTextFieldDelegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.taskTextField resignFirstResponder];
+    return YES;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([text isEqualToString:@"\n"])
+    {
+        [self.textView resignFirstResponder];
+        return NO;
+    }
+     return YES;
+}
 @end

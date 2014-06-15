@@ -26,7 +26,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.titleLabel.text = self.task.title;
+    self.detailLabel.text = self.task.description;
+    
+    NSDateFormatter *formatDate = [[NSDateFormatter alloc]init];
+    
+    [formatDate setDateFormat:@"MM-dd-YYYY"];
+    NSString *strongFromDate = [formatDate stringFromDate:self.task.date];
+    
+    self.dateLabel.text = strongFromDate;
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,15 +44,39 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
+    if([segue.destinationViewController isKindOfClass:[MBEditTaskViewController class]])
+    {
+        MBEditTaskViewController *editTaskVC = segue.destinationViewController;
+        
+        editTaskVC.task = self.task;
+        editTaskVC.delegate = self;
+    }
+}
+
+-(void)didUpdateTask
+{
+    self.titleLabel.text = self.task.title;
+    self.detailLabel.text = self.task.description;
+    
+    NSDateFormatter *formatDate = [[NSDateFormatter alloc]init];
+    [formatDate setDateFormat:@"yyyy-MM-dd"];
+    NSString *stringFromDate = [formatDate stringFromDate:self.task.date];
+    self.dateLabel.text = stringFromDate;
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self.delegate updateTask];
+}
+
+- (IBAction)editBarButtonPressed:(UIBarButtonItem *)sender {
+
+    [self performSegueWithIdentifier:@"toEditViewController" sender:nil];
+}
 @end
