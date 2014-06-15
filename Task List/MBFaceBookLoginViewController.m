@@ -77,18 +77,5 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 #pragma mark - FBLoginViewDelegate
 
-- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    
-}
 
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-                            user:(id)user {
-    self.nameLabel.text = ;
-    self.profilePic.profileID = user.id;
-}
-
-- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    self.profilePic.profileID = nil;
-    self.usernameLabel.text = nil;
-}
 @end
